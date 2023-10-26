@@ -83,7 +83,7 @@ export default {
     };
   },
   created() {
-    this.dataEl = useFilmStore().films || null;
+    this.updateDate();
   },
   computed: {
     disabled() {
@@ -103,6 +103,9 @@ export default {
     },
     deleteItem(el) {
       useFilmStore().removeFilm(el);
+      this.updateDate();
+    },
+    updateDate() {
       this.dataEl = useFilmStore().films || null;
     },
     createFilm() {
@@ -116,7 +119,7 @@ export default {
         useFilmStore().editFilm(JSON.parse(JSON.stringify(this.formState)));
       }
       this.closeAll();
-      this.dataEl = useFilmStore().films || null;
+      this.updateDate();
     },
     closeAll() {
       this.isCreating = false;
